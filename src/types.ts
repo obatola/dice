@@ -1,4 +1,5 @@
 import { randomNumFromAtoB } from "./utils";
+import Immuitable from 'immutable';
 
 export enum DieType {
     D2 = 2,
@@ -26,7 +27,7 @@ export class DieClass {
     _value?: number;
     _dieType: DieType;
 
-    constructor(dieType: DieType) {
+constructor(dieType: DieType) {
         this._value = undefined;
         this._dieType = dieType;
     }
@@ -41,6 +42,12 @@ export class DieClass {
 
     roll() {
         this._value = randomNumFromAtoB(1, this._dieType);
-        console.log("I rolled a ", this._value);
     }
 }
+
+export interface IDie {
+    value: string;
+    type: DieType;
+}
+
+export type IDiceCollection = Immutable.Map<string, DieClass>

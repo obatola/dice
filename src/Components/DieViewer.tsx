@@ -3,19 +3,14 @@ import { DieClass } from "../types"
 
 interface IDieViewer {
     die: DieClass
-    dieValue?: number
 }
 
-export const DieViewer = ({die, dieValue} : IDieViewer) => {
-
-    useEffect(() => {
-        console.log("new value");
-    }, [die._value])
+export const DieViewer = ({die} : IDieViewer) => {
 
     return (
         <div>
             <div>Number Sides: {die.getDieName()}</div>
-            <div>Value: {dieValue}</div>
+            <div>Value: {die.getDieValue()}</div>
             <div>. . . . . . . .</div>
         </div>
     )
