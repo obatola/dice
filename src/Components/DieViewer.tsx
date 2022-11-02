@@ -1,16 +1,28 @@
-import { useEffect } from "react"
-import { DieClass } from "../types"
+import React from "react"
+import { IDiceActions, useDice } from "../Hooks/useDiceContext"
+import { IDie } from "../types"
 
 interface IDieViewer {
-    die: DieClass
+    dieID: string
 }
 
-export const DieViewer = ({die} : IDieViewer) => {
+export const DieViewer = ({dieID} : IDieViewer) => {
+    const {state, dispatch} = useDice();
+    const die: IDie | undefined = state.dice.get(dieID);
+
+    if (!die) {
+        return <></>;
+    }
+
+    const handleRemove = () => {
+        dispatch({type: IDiceActions.RemoveDie, id: dieID})
+    }
 
     return (
         <div>
-            <div>Number Sides: {die.getDieName()}</div>
-            <div>Value: {die.getDieValue()}</div>
+            <button type="button" onClick={handleRemove}>remove</button>
+            <div>Number Sides: {die.type}</div>
+            <div>Value: {die.value}</div>
             <div>. . . . . . . .</div>
         </div>
     )

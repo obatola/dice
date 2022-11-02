@@ -2,11 +2,14 @@ import React from 'react';
 import logo from './logo.svg';
 import { DiceRoller } from './Components/DiceRoller';
 import './App.css';
+import { DiceContextProvider } from './Hooks/useDiceContext';
 
 function App() {
   return (
     <div className="App">
-      <DiceRoller />
+      <DiceContextProvider>
+        <DiceRoller />
+      </DiceContextProvider>
     </div>
   );
 }

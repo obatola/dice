@@ -1,9 +1,11 @@
 import { useState } from "react";
-import { IUseDicePackage } from "../Hooks/useDice"
+import { IDiceActions, useDice } from "../Hooks/useDiceContext"
 import { DieType } from "../types"
 
 
-export const AddDieSelector = ({ dicePackage }: { dicePackage: IUseDicePackage }) => {
+export const AddDieSelector = () => {
+    const {dispatch} = useDice();
+
     const initialValue: DieType = DieType.D6;
     const [dieType, setDieType] = useState<DieType>(initialValue);
     const dieTypes:string[]  = Object.keys(DieType).filter(x => !(parseInt(x) >= 0)) as string[];
@@ -13,7 +15,7 @@ export const AddDieSelector = ({ dicePackage }: { dicePackage: IUseDicePackage }
     }
 
     const onClick = () => {
-        dicePackage.addDie(dieType);
+        dispatch({type: IDiceActions.AddDie, dieType: dieType})
         setDieType(initialValue);
     }
 

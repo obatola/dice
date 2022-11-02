@@ -23,31 +23,9 @@ export enum DieType {
     D20 = 20
 }
 
-export class DieClass {
-    _value?: number;
-    _dieType: DieType;
-
-constructor(dieType: DieType) {
-        this._value = undefined;
-        this._dieType = dieType;
-    }
-
-    getDieName() {
-        return this._dieType;
-    }
-
-    getDieValue(): number | undefined {
-        return this._value;
-    }
-
-    roll() {
-        this._value = randomNumFromAtoB(1, this._dieType);
-    }
-}
-
 export interface IDie {
-    value: string;
+    value?: number;
     type: DieType;
 }
 
-export type IDiceCollection = Immutable.Map<string, DieClass>
+export type IDiceCollection = Immutable.Map<string, IDie>
