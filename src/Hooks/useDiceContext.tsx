@@ -29,7 +29,9 @@ export interface IUseDicePackage {
 const initialState: IDiceState = {    
     dice: Map({
             [generateId()]: createNewDie(DieType.D4),
-            [generateId()]: createNewDie(DieType.D6)
+            [generateId()]: createNewDie(DieType.D6),
+            [generateId()]: createNewDie(DieType.D8),
+            [generateId()]: createNewDie(DieType.D10)
         }),
     isRolling: false,
 }

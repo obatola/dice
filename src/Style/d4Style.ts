@@ -7,12 +7,28 @@ export const D4SVGContainer = styled.img`
     width: ${diceSize}px;
 `;
 
-export const DieValue = styled.span`
+const diceValueStyle = css`
     position: absolute;
     font-size: 25px;
     color: ${colors.white};
-    top: ${(diceSize - 12) / 2}px;
-    left: ${(diceSize - 12) / 2}px;
+`
+
+export const D4DieValue = styled.span`
+    ${diceValueStyle}
+    top: ${((diceSize) / 2) - 6}px;
+    left: ${((diceSize) / 2) - 6}px;
+`;
+
+export const D8DieValue = styled.span`
+    ${diceValueStyle}
+    top: ${((diceSize) / 2) - 20}px;
+    left: ${((diceSize) / 2) - 8}px;
+`;
+
+export const D10DieValue = styled.span`
+    ${diceValueStyle}
+    top: ${((diceSize) / 2) - 18}px;
+    left: ${((diceSize) / 2) - 8}px;
 `;
 
 export const D4Container = styled.div`

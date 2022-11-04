@@ -5,7 +5,9 @@ import { colors, diceSize } from './style';
 const dotSize = '24px';
 
 export const DieWrapper = styled.div`
-    margin-bottom: 40px
+    margin-bottom: 40px;
+    padding: 20px;
+    position: relative
 `;
 
 export const D6Dot = styled.span`
@@ -63,7 +65,7 @@ const widthHeight = diceSize - (2 * padding);
 
 export const D6Style = styled.div<IDiceStyleProps>`
     padding: ${padding}px;  
-    background-color: ${({isFrozen}: IDiceStyleProps) => isFrozen ? colors.grey : colors.red};  
+    background-color: ${({isFrozen, color}: IDiceStyleProps) => isFrozen ? colors.grey : color};  
     width: ${widthHeight}px;  
     height: ${widthHeight}px;  
     border-radius: 10%;

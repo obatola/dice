@@ -17,7 +17,6 @@ export const AddDieSelector = () => {
 
     const onClick = () => {
         dispatch({type: IDiceActions.AddDie, dieType: dieType})
-        setDieType(initialValue);
     }
 
     return (

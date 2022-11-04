@@ -61,7 +61,7 @@ export const D6Dice = ({die}: IPropOfDie) => {
     }
 
     return (
-        <D6Style side={die.value as number} isFrozen={die.isFrozen}>
+        <D6Style side={die.value as number} isFrozen={die.isFrozen} color={die.color}>
             {getD6Dots(die.value)}
         </D6Style>
     )

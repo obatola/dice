@@ -1,3 +1,4 @@
+import { arrayOfBackgroundColors } from "./Style/style";
 import { DieType, IDie } from "./types";
 
  // min and max included 
@@ -13,13 +14,14 @@ export const generateRolledValue = (dieType: DieType): number => {
     return randomNumFromAtoB(1, dieType);
 }
 
-export const createNewDie  = (dieType: DieType, value: number | undefined = undefined): IDie => {
-    console.log(typeof dieType);
+export const createNewDie  = (dieType: DieType, value: number | undefined = undefined): IDie => ({
+    type: dieType,
+    isFrozen: false,
+    value: value || generateRolledValue(dieType),
+    color: getRandomBackgroundColor()
+})
 
-    const newDie: IDie = {
-        type: dieType,
-        isFrozen: false,
-        value: value || generateRolledValue(dieType)
-    }
-    return newDie
+export const getRandomBackgroundColor = () => {
+    const index = Math.floor(Math.random() * arrayOfBackgroundColors.length)
+    return arrayOfBackgroundColors[index];
 }
