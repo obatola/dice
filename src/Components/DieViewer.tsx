@@ -1,6 +1,8 @@
 import React from "react"
 import { IDiceActions, useDice } from "../Hooks/useDiceContext"
+import { DieWrapper } from "../style"
 import { IDie } from "../types"
+import { D6Dice } from "./D6Dice"
 
 interface IDieViewer {
     dieID: string
@@ -18,12 +20,15 @@ export const DieViewer = ({dieID} : IDieViewer) => {
         dispatch({type: IDiceActions.RemoveDie, id: dieID})
     }
 
+    const handleToggleFreeze = () => {
+        dispatch({type: IDiceActions.ToggleFreeze, id: dieID})
+    }
+
     return (
-        <div>
+        <DieWrapper>
             <button type="button" onClick={handleRemove}>remove</button>
-            <div>Number Sides: {die.type}</div>
-            <div>Value: {die.value}</div>
-            <div>. . . . . . . .</div>
-        </div>
+            <button type="button" onClick={handleToggleFreeze}>toggleFreeze</button>
+            <D6Dice die={die}/>
+        </DieWrapper>
     )
 }

@@ -13,8 +13,12 @@ export const generateRolledValue = (dieType: DieType): number => {
     return randomNumFromAtoB(1, dieType);
 }
 
-export const createNewDie  = (dieType: DieType): IDie => {
-    return {
-        type: dieType
+export const createNewDie  = (dieType: DieType, value: number | undefined = undefined): IDie => {
+    const newDie: IDie = {
+        type: dieType,
+        isFrozen: false,
+        value: value || generateRolledValue(dieType)
     }
+
+    return newDie
 }

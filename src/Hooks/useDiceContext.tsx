@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
 import { Map } from 'immutable';
-import { DieType, IDiceCollection } from "../types";
-import { createNewDie, generateId, generateRolledValue, randomNumFromAtoB } from "../utils";
+import { DieType, IDiceCollection, IDie } from "../types";
+import { createNewDie, generateId, generateRolledValue } from "../utils";
 
 interface IDiceState {
     dice: IDiceCollection;
@@ -9,15 +9,17 @@ interface IDiceState {
 }
 
 export enum IDiceActions {
-    RollAll = 'RollAll',
     AddDie = 'AddDie',
-    RemoveDie = 'RemoveDie'
+    ToggleFreeze = 'ToggleFreeze',
+    RemoveDie = 'RemoveDie',
+    RollAll = 'RollAll',
 }
 
 type IDiceActionPackages = 
-    {type: IDiceActions.RollAll} | 
     {type: IDiceActions.AddDie, dieType: DieType} | 
-    {type: IDiceActions.RemoveDie, id: string}
+    {type: IDiceActions.ToggleFreeze, id: string} | 
+    {type: IDiceActions.RemoveDie, id: string} |
+    {type: IDiceActions.RollAll}
 
 export interface IUseDicePackage {
   state: IDiceState, 
@@ -26,11 +28,12 @@ export interface IUseDicePackage {
 
 const initialState: IDiceState = {
     dice: Map({
-            [generateId()]: createNewDie(DieType.D8),
-            [generateId()]: createNewDie(DieType.D8),
-            [generateId()]: createNewDie(DieType.D8),
-            [generateId()]: createNewDie(DieType.D8),
-            [generateId()]: createNewDie(DieType.D8)
+            [generateId()]: createNewDie(DieType.D6, 1),
+            [generateId()]: createNewDie(DieType.D6, 2),
+            [generateId()]: createNewDie(DieType.D6, 3),
+            [generateId()]: createNewDie(DieType.D6, 4),
+            [generateId()]: createNewDie(DieType.D6, 5),
+            [generateId()]: createNewDie(DieType.D6, 6)
         }),
     isRolling: false,
 }
@@ -41,18 +44,31 @@ function diceHandlerReducer(state: IDiceState, action: IDiceActionPackages) {
         const id = generateId();
         return { ...state, dice: state.dice.set(id, createNewDie(action.dieType))}
       }
+      case IDiceActions.ToggleFreeze: {
+        return { ...state, dice: state.dice.update(action.id, (die) => {
+          console.log(die);
+          return {
+            ...die,
+            isFrozen: !die?.isFrozen,
+          } as IDie;
+        })}
+      }
       case IDiceActions.RemoveDie: {
         return { ...state, dice: state.dice.remove(action.id)}
       }
       case IDiceActions.RollAll: {
         return { 
             ...state, 
-            dice: state.dice.map(die => (
-                {
-                    ...die,
-                    value: generateRolledValue(die.type),
+            dice: state.dice.map(die => {
+              if (!die.isFrozen) {
+                return {
+                  ...die,
+                  value: generateRolledValue(die.type),
                 }
-            ))
+              }
+              
+              return die;
+            })
         }
       }
       default: {
