@@ -26,27 +26,27 @@ export interface IUseDicePackage {
   dispatch: React.Dispatch<IDiceActionPackages>
 }
 
-const initialState: IDiceState = {
+const initialState: IDiceState = {    
     dice: Map({
-            [generateId()]: createNewDie(DieType.D6, 1),
-            [generateId()]: createNewDie(DieType.D6, 2),
-            [generateId()]: createNewDie(DieType.D6, 3),
-            [generateId()]: createNewDie(DieType.D6, 4),
-            [generateId()]: createNewDie(DieType.D6, 5),
-            [generateId()]: createNewDie(DieType.D6, 6)
+            [generateId()]: createNewDie(DieType.D4),
+            [generateId()]: createNewDie(DieType.D6)
         }),
     isRolling: false,
 }
 
 function diceHandlerReducer(state: IDiceState, action: IDiceActionPackages) {
+  console.log({action})
     switch (action.type) {
       case IDiceActions.AddDie: {
         const id = generateId();
+        const newDie = createNewDie(action.dieType);
+        console.log('nd', newDie)
+        const newDice = state.dice.set(id, newDie);
+        console.log('ndc', newDice.toJSON())
         return { ...state, dice: state.dice.set(id, createNewDie(action.dieType))}
       }
       case IDiceActions.ToggleFreeze: {
         return { ...state, dice: state.dice.update(action.id, (die) => {
-          console.log(die);
           return {
             ...die,
             isFrozen: !die?.isFrozen,

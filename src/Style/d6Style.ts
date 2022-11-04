@@ -1,8 +1,12 @@
 import styled, {css} from 'styled-components';
+import { IDiceStyleProps } from '../types';
+import { colors, diceSize } from './style';
 
 const dotSize = '24px';
 
-export const DieWrapper = styled.div``;
+export const DieWrapper = styled.div`
+    margin-bottom: 40px
+`;
 
 export const D6Dot = styled.span`
     display: block;
@@ -53,19 +57,18 @@ const d6Sides = {
     6: dieStyled4d6,
 }
 
-interface IDiceStyleProps {
-    side: number;
-    isFrozen: boolean;
-}
+
+const padding = 20;
+const widthHeight = diceSize - (2 * padding);
 
 export const D6Style = styled.div<IDiceStyleProps>`
-    padding: 20px;  
-    background-color: ${({isFrozen}: IDiceStyleProps) => isFrozen ? 'gray' : 'tomato'};  
-    width: 76px;  
-    height: 76px;  
+    padding: ${padding}px;  
+    background-color: ${({isFrozen}: IDiceStyleProps) => isFrozen ? colors.grey : colors.red};  
+    width: ${widthHeight}px;  
+    height: ${widthHeight}px;  
     border-radius: 10%;
     display: flex;
 
     ${/* @ts-ignore */ ''}
     ${({side}: IDiceStyleProps) => d6Sides[side] || ''}
-`
+`;

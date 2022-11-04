@@ -14,11 +14,12 @@ export const generateRolledValue = (dieType: DieType): number => {
 }
 
 export const createNewDie  = (dieType: DieType, value: number | undefined = undefined): IDie => {
+    console.log(typeof dieType);
+
     const newDie: IDie = {
         type: dieType,
         isFrozen: false,
         value: value || generateRolledValue(dieType)
     }
-
     return newDie
 }

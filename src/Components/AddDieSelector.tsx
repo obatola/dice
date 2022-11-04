@@ -11,7 +11,8 @@ export const AddDieSelector = () => {
     const dieTypes:string[]  = Object.keys(DieType).filter(x => !(parseInt(x) >= 0)) as string[];
 
     const selectDie = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setDieType(event.target.value as unknown as DieType);
+        // target.value is getting set to string so +x is bringing it back to a number
+        setDieType(+event.target.value as DieType);
     }
 
     const onClick = () => {

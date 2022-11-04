@@ -14,3 +14,12 @@ export interface IDie {
 }
 
 export type IDiceCollection = Immutable.Map<string, IDie>
+
+export interface IPropOfDie {
+    die: IDie
+}
+
+export interface IDiceStyleProps {
+    side: number;
+    isFrozen: boolean;
+}

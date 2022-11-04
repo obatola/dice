@@ -1,5 +1,5 @@
-import { IDie } from "../types"
-import { D6Dot, D6Style } from "../style"
+import { IDie, IPropOfDie } from "../types"
+import { D6Dot, D6Style } from "../Style/d6Style"
 
 
 
@@ -55,10 +55,7 @@ const getD6Dots = (side: number) => {
     return <></>
 } 
 
-interface IProps {
-    die: IDie
-}
-export const D6Dice = ({die}: IProps) => {
+export const D6Dice = ({die}: IPropOfDie) => {
     if (!die.value || die.value <= 0) {
         return <></>
     }

@@ -13,6 +13,8 @@ const DiceTray = ({dice}: {dice: IDiceCollection}) => (
 export const DiceRoller = () => {
     const {state, dispatch} = useDice();
 
+    console.log(state.dice.toJSON())
+
     return (
         <div>
             <DiceTray dice={state.dice} />
