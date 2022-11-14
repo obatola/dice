@@ -4,6 +4,8 @@ import { DieWrapper } from "../Style/d6Style"
 import { DieOptionPanel } from "../Style/style"
 import { DieType, IDie } from "../types"
 import { D10Dice } from "./D10Dice"
+import { D12Dice } from "./D12Dice"
+import { D20Dice } from "./D20Dice"
 import { D4Dice } from "./D4Dice"
 import { D6Dice } from "./D6Dice"
 import { D8Dice } from "./D8Dice"
@@ -61,6 +63,10 @@ const getCorrectDieImage = (die: IDie): React.ReactNode => {
             return (<D8Dice die={die}/>)
         case DieType.D10:
             return (<D10Dice die={die}/>)
+        case DieType.D12:
+            return (<D12Dice die={die}/>)
+        case DieType.D20:
+            return (<D20Dice die={die}/>)
         default:
             return (<D6Dice die={die}/>)
     }

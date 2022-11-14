@@ -2,7 +2,7 @@ import styled, {css} from 'styled-components';
 import { IDiceStyleProps } from '../types';
 import { colors, diceSize } from './style';
 
-const dotSize = '24px';
+const dotSize = '20px';
 
 export const DieWrapper = styled.div`
     margin-bottom: 40px;
@@ -60,8 +60,8 @@ const d6Sides = {
 }
 
 
-const padding = 20;
-const widthHeight = diceSize - (2 * padding);
+const padding = 18;
+const widthHeight = (diceSize - 12) - (2 * padding);
 
 export const D6Style = styled.div<IDiceStyleProps>`
     padding: ${padding}px;  
@@ -70,6 +70,7 @@ export const D6Style = styled.div<IDiceStyleProps>`
     height: ${widthHeight}px;  
     border-radius: 10%;
     display: flex;
+    border: solid 3px ${colors.stroke};
 
     ${/* @ts-ignore */ ''}
     ${({side}: IDiceStyleProps) => d6Sides[side] || ''}

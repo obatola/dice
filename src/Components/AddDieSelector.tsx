@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { IDiceActions, useDice } from "../Hooks/useDiceContext"
+import { Button, DieSelectorTray, Select } from "../Style/inputStyle";
 import { DieType } from "../types"
 
 
@@ -20,12 +21,12 @@ export const AddDieSelector = () => {
     }
 
     return (
-        <div>
-            <select value={dieType} onChange={selectDie} aria-label="Die Type">
+        <DieSelectorTray>
+            <Select value={dieType} onChange={selectDie} aria-label="Die Type">
                 {/*@ts-ignore */}
                 {(dieTypes).map((key: string) => <option key={key} value={DieType[key]}>{key}</option>)}
-            </select>
-            <button onClick={onClick}>Add Die</button>
-        </div>
+            </Select>
+            <Button onClick={onClick}>Add Die</Button>
+        </DieSelectorTray>
     );
 }

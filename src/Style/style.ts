@@ -13,8 +13,17 @@ export const colors = {
     grey: 'rgb(189, 195, 199)',
     pink: ' #f78fb3',
     hotPink: ' #ea8685',
-    stroke: '#3d3d3d', // #3d3d3d
-    background: '#f7f1e3',
+    stroke: '#594639', // #3d3d3d
+    interiorRoundingFill: '#4b4b4b',
+    background: '#f5f7e3', // #f7f1e3 #ECE2D1
+    font: '#594639',
+}
+
+export const inputColors = {
+    button: {
+        background: '#fefff4',
+        border: colors.font,
+    }
 }
 
 export const arrayOfBackgroundColors = [
@@ -35,7 +44,7 @@ export const DieOptionPanel = styled.span`
     button {
         margin-right: 5px
     }
-`
+`;
 
 export const DiceTrayStyle = styled.div`
     max-width: 1200px;
@@ -44,14 +53,28 @@ export const DiceTrayStyle = styled.div`
     gap: 1rem;
     place-items: center;
 
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 
+    @media screen and (max-width: 800px) {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+`;
 
-    // @media (min-width: 600px) {
-    //     .cards { grid-template-columns: repeat(2, 1fr); }
-    // }
+export const DieSVG = styled.svg`
+    height: ${diceSize}px;
+    width: ${diceSize}px;
 
-    // @media (min-width: 900px) {
-    //     .cards { grid-template-columns: repeat(3, 1fr); }
-    // }
+    fill-rule:evenodd;
+    clip-rule:evenodd;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-miterlimit:1.5;
+`;
+
+export const Header = styled.h1`
+
+`;
+
+export const Spacer = styled.div`
+    margin-bottom: 30px;
 `

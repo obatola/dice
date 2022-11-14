@@ -1,15 +1,5 @@
 import styled from 'styled-components';
-import { colors, diceSize } from '../Style/style';
-
-const DieSVG = styled.svg`
-    height: ${diceSize}px;
-    width: ${diceSize}px;
-    fill-rule:evenodd;
-    clip-rule:evenodd;
-    stroke-linecap:round;
-    stroke-linejoin:round;
-    stroke-miterlimit:1.5;
-`;
+import { colors, diceSize, DieSVG } from '../Style/style';
 
 const DieOuterPath = styled.path<IDieSVGProps>`
     fill: ${(props: IDieSVGProps) => props.color};

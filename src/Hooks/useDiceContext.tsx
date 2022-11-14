@@ -31,7 +31,9 @@ const initialState: IDiceState = {
             [generateId()]: createNewDie(DieType.D4),
             [generateId()]: createNewDie(DieType.D6),
             [generateId()]: createNewDie(DieType.D8),
-            [generateId()]: createNewDie(DieType.D10)
+            [generateId()]: createNewDie(DieType.D10),
+            [generateId()]: createNewDie(DieType.D12),
+            [generateId()]: createNewDie(DieType.D20)
         }),
     isRolling: false,
 }
