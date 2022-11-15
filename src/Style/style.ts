@@ -14,11 +14,10 @@ export const colors = {
     white: '#FEFFF8',
     grey: '#93989B',
     pink: ' #f78fb3',
-    hotPink: ' #ea8685',
-    stroke: '#594639', // #3d3d3d
+    stroke: '#4B382C', // #594639 #3d3d3d
     interiorRoundingFill: '#4b4b4b',
     background: '#f5f7e3', // #f7f1e3 #ECE2D1
-    font: '#594639',
+    font: '#4B382C',
 }
 
 export const inputColors = {
@@ -44,7 +43,7 @@ export const arrayOfBackgroundColors = [
     colors.purple,
     colors.orange,
     colors.pink,
-    colors.hotPink,
+    colors.dangerRed,
     colors.green
 ];
 

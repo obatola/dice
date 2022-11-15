@@ -1,4 +1,5 @@
 import React from "react";
+import styled from 'styled-components';
 import { IDiceActions, useDice } from "../Hooks/useDiceContext";
 import { RollButton } from "../Style/inputStyle";
 import { DiceTrayStyle, Spacer } from "../Style/style";
@@ -6,6 +7,10 @@ import { IDiceCollection } from "../types";
 import { AddDieSelector } from "./AddDieSelector";
 import { DieViewer } from "./DieViewer";
 import { RollButtonTray } from "./RollButtonTray";
+
+const Container = styled.div`
+    padding: 0 20px;
+`
 
 const DiceTray = ({dice}: {dice: IDiceCollection}) => (
     <DiceTrayStyle>
@@ -18,10 +23,12 @@ export const DiceRoller = () => {
 
     return (
         <div>
-            <AddDieSelector />
-            <Spacer />
+            <Container>
+                <AddDieSelector />
+                <Spacer />
+                <DiceTray dice={state.dice} />
+            </Container>
             <RollButtonTray />
-            <DiceTray dice={state.dice} />
         </div>
     )
 }
