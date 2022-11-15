@@ -6,7 +6,7 @@ import { RollButton } from "../Style/inputStyle";
 const padding = 20;
 
 const Container = styled.div`
-    height: 100px; 
+    height: 90px; 
     position: fixed; 
     bottom:0%;
     width: calc(100% - ${2 * padding}px);

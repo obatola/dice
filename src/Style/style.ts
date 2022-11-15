@@ -11,7 +11,7 @@ export const colors = {
     red: '#e74c3c',
     dangerRed: '#ffa9a9',
     freezeBlue: '#d4eaed',
-    white: 'rgb(236, 240, 241)',
+    white: '#FEFFF8',
     grey: '#93989B',
     pink: ' #f78fb3',
     hotPink: ' #ea8685',
@@ -24,7 +24,7 @@ export const colors = {
 export const inputColors = {
     button: {
         background: {
-            [InputType.normal]: '#fefff4',
+            [InputType.normal]: colors.white,
             [InputType.danger]: colors.dangerRed,
             [InputType.freeze]: colors.freezeBlue,
         },
@@ -63,7 +63,7 @@ export const DiceTrayStyle = styled.div`
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    gap: 1rem;
+    gap: 0;
     place-items: center;
 
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -85,7 +85,7 @@ export const DieSVG = styled.svg`
 `;
 
 export const Header = styled.h1`
-
+    margin-bottom: 10px;
 `;
 
 export const Spacer = styled.div`
