@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { InputType } from '../types';
 export const dotSize = '24px';
 export const diceSize = 116;
 
@@ -9,8 +9,10 @@ export const colors = {
     purple: '#ccae62',
     orange: '#e67e22',
     red: '#e74c3c',
+    dangerRed: '#ffa9a9',
+    freezeBlue: '#d4eaed',
     white: 'rgb(236, 240, 241)',
-    grey: 'rgb(189, 195, 199)',
+    grey: '#93989B',
     pink: ' #f78fb3',
     hotPink: ' #ea8685',
     stroke: '#594639', // #3d3d3d
@@ -21,9 +23,19 @@ export const colors = {
 
 export const inputColors = {
     button: {
-        background: '#fefff4',
+        background: {
+            [InputType.normal]: '#fefff4',
+            [InputType.danger]: colors.dangerRed,
+            [InputType.freeze]: colors.freezeBlue,
+        },
         border: colors.font,
     }
+}
+
+export const dieColor = {
+    frozenBackground: colors.grey,
+    frozenBorder: colors.grey,
+    border: colors.font
 }
 
 export const arrayOfBackgroundColors = [
@@ -38,8 +50,9 @@ export const arrayOfBackgroundColors = [
 
 export const DieOptionPanel = styled.span`
     position: absolute;
+    width: 100%;
     top: 0;
-    left 0;
+    left: 0;
 
     button {
         margin-right: 5px

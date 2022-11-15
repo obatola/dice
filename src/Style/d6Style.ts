@@ -6,7 +6,7 @@ const dotSize = '20px';
 
 export const DieWrapper = styled.div`
     margin-bottom: 40px;
-    padding: 20px;
+    padding: 25px;
     position: relative
 `;
 

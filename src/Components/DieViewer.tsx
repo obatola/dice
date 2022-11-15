@@ -1,8 +1,9 @@
 import React, { useState } from "react"
 import { IDiceActions, useDice } from "../Hooks/useDiceContext"
 import { DieWrapper } from "../Style/d6Style"
+import { Button } from "../Style/inputStyle"
 import { DieOptionPanel } from "../Style/style"
-import { DieType, IDie } from "../types"
+import { DieType, IDie, InputSize, InputType } from "../types"
 import { D10Dice } from "./D10Dice"
 import { D12Dice } from "./D12Dice"
 import { D20Dice } from "./D20Dice"
@@ -44,8 +45,8 @@ export const DieViewer = ({dieID} : IDieViewer) => {
         <DieWrapper onMouseEnter={handeMouseEnter} onMouseLeave={handleMouseLeave}>
             { shouldShowOptions && (
                 <DieOptionPanel>
-                    <button type="button" onClick={handleRemove}>x</button>
-                    <button type="button" onClick={handleToggleFreeze}>{die.isFrozen ? 'UnFreeze' : 'Freeze'}</button>
+                    <Button type="button" onClick={handleRemove} size={InputSize.small} inputType={InputType.danger}>x</Button>
+                    <Button type="button" onClick={handleToggleFreeze} size={InputSize.small} inputType={InputType.freeze}>{die.isFrozen ? 'UnFreeze' : 'Freeze'}</Button>
                 </DieOptionPanel>
             )}
             {getCorrectDieImage(die)}

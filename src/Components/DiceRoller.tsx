@@ -5,6 +5,7 @@ import { DiceTrayStyle, Spacer } from "../Style/style";
 import { IDiceCollection } from "../types";
 import { AddDieSelector } from "./AddDieSelector";
 import { DieViewer } from "./DieViewer";
+import { RollButtonTray } from "./RollButtonTray";
 
 const DiceTray = ({dice}: {dice: IDiceCollection}) => (
     <DiceTrayStyle>
@@ -13,19 +14,13 @@ const DiceTray = ({dice}: {dice: IDiceCollection}) => (
 )
 
 export const DiceRoller = () => {
-    const {state, dispatch} = useDice();
+    const {state} = useDice();
 
     return (
         <div>
             <AddDieSelector />
             <Spacer />
-            <RollButton 
-                type="button" 
-                onClick={() => { dispatch({type: IDiceActions.RollAll})}}
-            >
-                Roll
-            </RollButton>
-            <Spacer />
+            <RollButtonTray />
             <DiceTray dice={state.dice} />
         </div>
     )

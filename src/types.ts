@@ -25,3 +25,14 @@ export interface IDiceStyleProps {
     isFrozen: boolean;
     color?: string;
 }
+
+export enum InputSize {
+    normal = 'normal',
+    small = 'small'
+  }
+  
+export enum InputType {
+    normal = 'normal',
+    danger = 'danger',
+    freeze = 'freeze'
+}

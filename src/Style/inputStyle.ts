@@ -1,40 +1,73 @@
 import styled, { css } from 'styled-components';
+import { InputSize, InputType } from '../types';
 import { colors, inputColors } from './style';
+interface IInputProps {
+  size?: InputSize;
+  inputType?: InputType;
+}
 
-const transitionParam = css`0.05s ease`
+const inputParams = {
+  base: {
+    [InputSize.normal]: css`
+      font-size: 16px;
+      border: 3px solid;
+      box-shadow: 0.5px 0.5px 0px 0px, 1px 1px 0px 0px, 1.5px 1.5px 0px 0px, 2px 2px 0px 0px, 2.5px 2.5px 0px 0px, 3px 3px 0px 0px, 3.5px 3.5px 0px 0px, 4px 4px 0px 0px, 4.5px 4.5px 0px 0px, 5px 5px 0px 0px;
+    `,
+    [InputSize.small]: css`
+      font-size: 10px;
+      border: 1.5px solid;
+      box-shadow: 0.5px 0.5px 0px 0px, 1px 1px 0px 0px, 1.5px 1.5px 0px 0px, 2px 2px 0px 0px;
+    `,
+  },
+  active: {
+    [InputSize.normal]: css`
+      top: 5px;
+      left: 5px;
+    `,
+    [InputSize.small]: css`
+      top: 2px;
+      left: 2px;
+    `,
+  },
+  focus: {
+    [InputSize.normal]: css`
+      box-shadow: 0.5px 0.5px 0px 0px, 1px 1px 0px 0px, 1.5px 1.5px 0px 0px, 2px 2px 0px 0px, 2.5px 2.5px 0px 0px, 3px 3px 0px 0px, 3.5px 3.5px 0px 0px;
+      top: 1.5px;
+      left: 1.5px;
+    `,
+    [InputSize.small]: css`
+      box-shadow: 0.5px 0.5px 0px 0px, 1px 1px 0px 0px;
+      top: 1px;
+      left: 1px;
+    `,
+  }
+}
 
-const inputStyling = css`
+const inputStyling = css<IInputProps>`
+  z-index: 1;
+  -webkit-appearance: none;
+  ${({size = InputSize.normal}: IInputProps) => inputParams.base[size]};
   font-family: "Open Sans", sans-serif;
-  font-size: 16px;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
   color: ${inputColors.button.border};
-  background-color: ${inputColors.button.background};
+  background-color: ${({inputType = InputType.normal}: IInputProps) => inputColors.button.background[inputType]};
   cursor: pointer;
-  border: 3px solid;
   border-radius: 5px;
   padding: 0.25em 0.5em;
-  box-shadow: 0.5px 0.5px 0px 0px, 1px 1px 0px 0px, 1.5px 1.5px 0px 0px, 2px 2px 0px 0px, 2.5px 2.5px 0px 0px, 3px 3px 0px 0px, 3.5px 3.5px 0px 0px, 4px 4px 0px 0px, 4.5px 4.5px 0px 0px, 5px 5px 0px 0px;
   position: relative;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 
-  transition: box-shadow ${transitionParam}, background-color ${transitionParam}, top ${transitionParam}, left ${transitionParam};
-  
-  
   :active {
     box-shadow: 0px 0px 0px 0px;
-    background-color: ${colors.background};
-    top: 5px;
-    left: 5px;
+    ${({size = InputSize.normal}: IInputProps) => inputParams.active[size]};
   }
     
   :focus {
-    box-shadow: 0.5px 0.5px 0px 0px, 1px 1px 0px 0px, 1.5px 1.5px 0px 0px, 2px 2px 0px 0px, 2.5px 2.5px 0px 0px, 3px 3px 0px 0px, 3.5px 3.5px 0px 0px;
-    top: 1.5px;
-    left: 1.5px;
+    ${({size = InputSize.normal}: IInputProps) => inputParams.focus[size]};
     outline: none;
   }
   
@@ -45,22 +78,34 @@ const inputStyling = css`
 
 export const Select = styled.select`
   ${inputStyling}
+
+  :after {
+    z-index: 3;
+    content: '';
+    display: inline-block;
+    float: right;
+    width: 5rem;
+    height: 5rem;
+    color: yellow;
+    border-bottom: 10px solid yellow;
+    border-left: 10px solid yellow;
+    border-bottom-left-radius: 2px;
+  }
 `;
 
-export const Button = styled.button`
+export const Button = styled.button<IInputProps>`
   ${inputStyling}
 
   :active:focus {
     box-shadow: 0px 0px 0px 0px;
-    background-color: ${colors.background};
-    top: 5px;
-    left: 5px;
+    ${({size = InputSize.normal}: IInputProps) => inputParams.active[size]};
   }
 `
 
 export const RollButton = styled(Button)`
-  width: 200px;
-  height: 60px;
+  width: 100%;
+  height: 80px;
+  max-width: 600px;
 `;
 
 export const ButtonSimple = styled.button`
@@ -100,4 +145,3 @@ export const DieSelectorTray = styled.div`
       margin-right: 20px;
     }
 `;
-
