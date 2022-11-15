@@ -5,9 +5,13 @@ import { colors, diceSize } from './style';
 const dotSize = '20px';
 
 export const DieWrapper = styled.div`
-    margin-bottom: 40px;
     padding: 25px;
-    position: relative
+    position: relative;
+    margin-bottom: 40px;
+
+    @media (max-width: 800px) {
+        margin-bottom: 0;
+    }
 `;
 
 export const D6Dot = styled.span`
