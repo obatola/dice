@@ -36,3 +36,7 @@ export enum InputType {
     danger = 'danger',
     freeze = 'freeze'
 }
+
+export interface IDieSVGProps {
+    die: IDie;
+}

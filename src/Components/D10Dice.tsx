@@ -13,7 +13,7 @@ export const D10Dice = ({die}: IPropOfDie) => {
     return (
         <D4Container>
             <D10DieValue>{die.value}</D10DieValue>
-            <D10Icon color={die.isFrozen ? colors.grey : die.color}/>
+            <D10Icon die={die} />
         </D4Container>
     )
 }

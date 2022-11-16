@@ -1,11 +1,12 @@
 import styled from 'styled-components';
-import { InputType } from '../types';
+import { IDie, InputType } from '../types';
+import { getDieColor, lightenDarkenColor } from '../utils';
 export const dotSize = '24px';
 export const diceSize = 116;
 
 export const colors = {
-    blue: 'rgb(52, 152, 219)',
-    green: 'rgb(38, 173, 96)',
+    blue: '#3498dc',
+    green: '#26ad60',
     purple: '#ccae62',
     orange: '#e67e22',
     red: '#e74c3c',
@@ -42,7 +43,7 @@ export const arrayOfBackgroundColors = [
     colors.blue,
     colors.purple,
     colors.orange,
-    colors.pink,
+    // colors.pink,
     colors.dangerRed,
     colors.green
 ];
@@ -90,3 +91,25 @@ export const Header = styled.h1`
 export const Spacer = styled.div`
     margin-bottom: 30px;
 `
+
+interface IBackgroundColorShapesProps {
+    die: IDie;
+    shadeValue?: number;
+}
+
+export const BackgroundColorShapes = styled.path<IBackgroundColorShapesProps>`
+    ${({die, shadeValue = 0} : IBackgroundColorShapesProps) => 
+        `fill: ${lightenDarkenColor(getDieColor(die), shadeValue)};`}}}
+`;
+
+export const DieOuterPath = styled.path`
+    fill: none;
+    stroke: ${colors.stroke};
+    stroke-width:20.83px;
+`;
+
+export const DieInnerPath = styled.path`
+    fill: none;
+    stroke: ${colors.stroke};
+    stroke-width:8.33px;
+`;
