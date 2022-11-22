@@ -1,4 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
+
 import { IDiceActions, useDice } from "../Hooks/useDiceContext"
 import { Button, DieSelectorTray, Select } from "../Style/inputStyle";
 import { DieType } from "../types"

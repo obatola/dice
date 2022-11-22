@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { AppContextProvider } from './Hooks/useApplicationContext';
+import { DiceContextProvider } from './Hooks/useDiceContext';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <AppContextProvider>
+      <DiceContextProvider>
+        <App />
+      </DiceContextProvider>
+    </AppContextProvider>
   </React.StrictMode>
 );
 

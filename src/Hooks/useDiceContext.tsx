@@ -39,7 +39,6 @@ const initialState: IDiceState = {
 }
 
 function diceHandlerReducer(state: IDiceState, action: IDiceActionPackages) {
-  console.log({action})
     switch (action.type) {
       case IDiceActions.AddDie: {
         const id = generateId();

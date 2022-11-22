@@ -3,6 +3,7 @@ import { IDie, InputType } from '../types';
 import { getDieColor, lightenDarkenColor } from '../utils';
 export const dotSize = '24px';
 export const diceSize = 116;
+export const appPadding = 20;
 
 export const colors = {
     blue: '#3498dc',
@@ -19,6 +20,7 @@ export const colors = {
     interiorRoundingFill: '#4b4b4b',
     background: '#f5f7e3', // #f7f1e3 #ECE2D1
     font: '#4B382C',
+    darkerBackground: '#ddd19b'
 }
 
 export const inputColors = {
@@ -29,6 +31,10 @@ export const inputColors = {
             [InputType.freeze]: colors.freezeBlue,
         },
         border: colors.font,
+    },
+    menu: {
+        background: colors.darkerBackground,
+        backgroundOverlay: colors.stroke,
     }
 }
 

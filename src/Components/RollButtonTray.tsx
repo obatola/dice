@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 import { IDiceActions, useDice } from "../Hooks/useDiceContext";
 import { RollButton } from "../Style/inputStyle";
+import { appPadding } from '../Style/style';
 
-const padding = 20;
 
 const Container = styled.div`
     height: 90px; 
     position: fixed; 
     bottom:0%;
-    width: calc(100% - ${2 * padding}px);
-    padding: ${padding}px;
+    width: calc(100% - ${2 * appPadding}px);
+    padding-bottom: ${appPadding}px;
     background-color: none; 
     z-index: 10;
 `;
