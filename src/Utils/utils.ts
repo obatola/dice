@@ -1,5 +1,5 @@
-import { arrayOfBackgroundColors, colors } from "./Style/style";
-import { DieType, IDie } from "./types";
+import { arrayOfBackgroundColors, colors } from "../Style/style";
+import { DieType, IDie } from "../types";
 
  // min and max included 
 export const randomNumFromAtoB = (min: number, max: number) => Math.floor(Math.random() * (max - min + 1) + min);

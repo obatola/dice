@@ -5,7 +5,7 @@ import { IDiceActions, useDice } from '../Hooks/useDiceContext';
 import { Button, ColorOption } from '../Style/inputStyle';
 import { arrayOfBackgroundColors, arrayOfValueColors, colors, Header, Label } from '../Style/style';
 import { DieType, IDie, InputSize } from '../types';
-import { createNewDie, createNewDieWithType } from '../utils';
+import { createNewDie, createNewDieWithType } from '../Utils/utils';
 import { DieTypeSelector } from './AddDieSelector';
 import { DieViewer } from './DieViewer';
 
@@ -98,7 +98,7 @@ export const DieCustomizationMenu = () => {
                     <Label htmlFor="dieType">Die Color</Label>
                     <ColorPanelTray>    
                         {arrayOfBackgroundColors.map((color) => (
-                            <ColorOption name={color} size={InputSize.small} color={color} isSelected={color === die.color} onClick={handleBackgroundColorSelection} />
+                            <ColorOption key={color} name={color} size={InputSize.small} color={color} isSelected={color === die.color} onClick={handleBackgroundColorSelection} />
                         ))}
                     </ColorPanelTray>
                 </div>
@@ -106,7 +106,7 @@ export const DieCustomizationMenu = () => {
                     <Label htmlFor="dieType">Die Value Color</Label>
                     <ColorPanelTray>    
                         {arrayOfValueColors.map((color) => (
-                            <ColorOption name={color} size={InputSize.small} color={color} isSelected={color === die.valueColor} onClick={handleValueColorSelection} />
+                            <ColorOption key={color} name={color} size={InputSize.small} color={color} isSelected={color === die.valueColor} onClick={handleValueColorSelection} />
                         ))}
                     </ColorPanelTray>
                 </div>

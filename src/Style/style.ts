@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { IDie, InputType } from '../types';
-import { getDieColor, lightenDarkenColor } from '../utils';
+import { getDieColor, lightenDarkenColor } from '../Utils/utils';
 export const dotSize = '24px';
 export const diceSize = 116;
 export const appPadding = 20;
@@ -16,7 +16,6 @@ export const colors = {
     freezeBlue: '#d4eaed',
     white: '#FEFFF8',
     grey: '#93989B',
-    pink: ' #f78fb3',
     stroke: '#4B382C', // #594639 #3d3d3d
     interiorRoundingFill: '#4b4b4b',
     background: '#f5f7e3', // #f7f1e3 #ECE2D1
@@ -48,7 +47,7 @@ export const dieColor = {
 export const arrayOfBackgroundColors = [
     colors.green,
     '#8e936d', // artichoke
-    // colors.pink,
+    '#c9b79c', // khaki
     colors.blue,
     colors.purple,
     '#9c7178', // copperRose

@@ -1,7 +1,8 @@
 import React, { createContext, useReducer } from "react";
 import { Map } from 'immutable';
 import { DieType, IDiceCollection, IDie } from "../types";
-import { createNewDieWithType, generateId, generateRolledValue } from "../utils";
+import { createNewDieWithType, generateId, generateRolledValue } from "../Utils/utils";
+import { getDieFromLocalStorage, saveDieSetToLocalStorage } from "../Utils/localStorageUtils";
 
 interface IDiceState {
     dice: IDiceCollection;
@@ -31,18 +32,25 @@ export interface IUseDicePackage {
 }
 
 const initialState: IDiceState = {    
-    dice: Map({
-            [generateId()]: createNewDieWithType(DieType.D4),
-            [generateId()]: createNewDieWithType(DieType.D6),
-            [generateId()]: createNewDieWithType(DieType.D8),
-            [generateId()]: createNewDieWithType(DieType.D10),
-            [generateId()]: createNewDieWithType(DieType.D12),
-            [generateId()]: createNewDieWithType(DieType.D20)
-        }),
+    dice: getDieFromLocalStorage(),
     isRolling: false,
 }
 
-function diceHandlerReducer(state: IDiceState, action: IDiceActionPackages) {
+const actionsToOmitFromLocalStorageSaving = [
+  IDiceActions.RollAll,
+]
+
+function diceHandlerReducerLocalStorageInterceptor(state: IDiceState, action: IDiceActionPackages): IDiceState {
+  const newState = diceHandlerReducer(state, action);
+  
+  if (!actionsToOmitFromLocalStorageSaving.includes(action.type)) {
+    saveDieSetToLocalStorage(newState.dice);
+  }
+
+  return newState;
+}
+
+function diceHandlerReducer(state: IDiceState, action: IDiceActionPackages): IDiceState {
     switch (action.type) {
       case IDiceActions.AddDie: {
         const id = generateId();
@@ -91,7 +99,7 @@ const DiceContext = createContext<IUseDicePackage | null>(null);
 DiceContext.displayName = 'DiceContext'
 
 export const DiceContextProvider = ({children}: {children: React.ReactNode}) => {
-    const [state, dispatch] = useReducer(diceHandlerReducer, initialState)
+    const [state, dispatch] = useReducer(diceHandlerReducerLocalStorageInterceptor, initialState)
 
     return (<DiceContext.Provider value={{state, dispatch}}>
         {children}

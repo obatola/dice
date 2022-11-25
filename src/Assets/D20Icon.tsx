@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { BackgroundColorShapes, colors, diceSize, DieSVG } from '../Style/style';
 import { IDie, IDieSVGProps } from '../types';
-import { lightenDarkenColor } from '../utils';
+import { lightenDarkenColor } from '../Utils/utils';
 
 const DieOuterPath = styled.path<IDieSVGProps>`
     fill: none;
