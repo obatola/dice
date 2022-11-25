@@ -14,12 +14,30 @@ export const generateRolledValue = (dieType: DieType): number => {
     return randomNumFromAtoB(1, dieType);
 }
 
-export const createNewDie  = (dieType: DieType, value: number | undefined = undefined): IDie => ({
+export const createNewDieWithType  = (dieType: DieType, options: Partial<IDie> = {}): IDie => createNewDie({
+    ...options,
     type: dieType,
-    isFrozen: false,
-    value: value || generateRolledValue(dieType),
-    color: getRandomBackgroundColor()
 })
+
+interface IOptionalDieProperties extends Partial<IDie> {
+    type: DieType;
+  }
+
+export const createNewDie  = (dieParams: IOptionalDieProperties): IDie => {
+    const dieType = dieParams.type
+    let value = generateRolledValue(dieType);
+
+    if (dieParams.value && dieParams.value > 0 && dieParams.value <= dieType) {
+        value = dieParams.value;
+    }
+
+    return {
+        isFrozen: false,
+        color: getRandomBackgroundColor(),
+        ...dieParams,
+        value,
+    }
+}
 
 export const getRandomBackgroundColor = () => {
     const index = Math.floor(Math.random() * arrayOfBackgroundColors.length)

@@ -1,7 +1,7 @@
 import React from 'react';
 import { DiceRoller } from './Components/DiceRoller';
 import { Header } from './Style/style';
-import {  IAppActions, useApp } from './Hooks/useApplicationContext';
+import {  IAppActions, MenuTypes, useApp } from './Hooks/useApplicationContext';
 import './App.css';
 import { Button } from './Style/inputStyle';
 import { Menu } from './Components/Menu';
@@ -21,7 +21,7 @@ function App() {
   const {dispatch} = useApp();
 
   const handleOpenMenuClick = () => {
-    dispatch({type: IAppActions.OpenMenu});
+    dispatch({type: IAppActions.OpenSettingsMenu});
   }
 
   return (

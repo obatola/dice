@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { IAppActions, useApp } from "../Hooks/useApplicationContext"
 import { IDiceActions, useDice } from "../Hooks/useDiceContext"
 import { DieWrapper } from "../Style/d6Style"
 import { Button } from "../Style/inputStyle"
@@ -12,11 +13,14 @@ import { D6Dice } from "./D6Dice"
 import { D8Dice } from "./D8Dice"
 
 interface IDieViewer {
-    dieID: string
+    dieID: string;
+    hideOptions?: boolean;
 }
 
-export const DieViewer = ({dieID} : IDieViewer) => {
+export const DieViewer = ({dieID, hideOptions} : IDieViewer) => {
     const {state, dispatch} = useDice();
+    const {state: appState, dispatch: appDispatch} = useApp();
+
     const [shouldShowOptions, setShouldShowOptions] = useState(false);
     
     const die: IDie | undefined = state.dice.get(dieID);
@@ -41,12 +45,17 @@ export const DieViewer = ({dieID} : IDieViewer) => {
         setShouldShowOptions(false);
     }
 
+    const handleOpenCustomizationPage = () => {
+        appDispatch({type: IAppActions.OpenDiceCustomizationMenu, dieID })
+    }
+
     return (
         <DieWrapper onMouseEnter={handeMouseEnter} onMouseLeave={handleMouseLeave}>
-            { shouldShowOptions && (
+            { (shouldShowOptions && !hideOptions) && (
                 <DieOptionPanel>
                     <Button type="button" onClick={handleRemove} size={InputSize.small} inputType={InputType.danger}>x</Button>
                     <Button type="button" onClick={handleToggleFreeze} size={InputSize.small} inputType={InputType.freeze}>{die.isFrozen ? 'UnFreeze' : 'Freeze'}</Button>
+                    <Button type="button" onClick={handleOpenCustomizationPage} size={InputSize.small}>c</Button>
                 </DieOptionPanel>
             )}
             {getCorrectDieImage(die)}

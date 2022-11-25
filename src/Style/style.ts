@@ -4,11 +4,12 @@ import { getDieColor, lightenDarkenColor } from '../utils';
 export const dotSize = '24px';
 export const diceSize = 116;
 export const appPadding = 20;
+export const borderRadius = '5px';
 
 export const colors = {
     blue: '#3498dc',
     green: '#26ad60',
-    purple: '#ccae62',
+    purple: '#3E4C69',
     orange: '#e67e22',
     red: '#e74c3c',
     dangerRed: '#ffa9a9',
@@ -49,6 +50,10 @@ export const arrayOfBackgroundColors = [
     colors.blue,
     colors.purple,
     colors.orange,
+    '#ffdc5e', // mustard
+    '#9c7178', // copperRose
+    '#e9734d', // burntSienna
+    '#8e936d', // artichoke
     // colors.pink,
     colors.dangerRed,
     colors.green
@@ -91,7 +96,13 @@ export const DieSVG = styled.svg`
 `;
 
 export const Header = styled.h1`
+    margin-bottom: 30px;
+`;
+
+export const Label = styled.label`
+    display: block;
     margin-bottom: 10px;
+    font-weight: bold;
 `;
 
 export const Spacer = styled.div`

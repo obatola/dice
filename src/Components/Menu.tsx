@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IAppActions, useApp } from '../Hooks/useApplicationContext';
+import { IAppActions, MenuTypes, useApp } from '../Hooks/useApplicationContext';
 import { Button } from '../Style/inputStyle';
-import { Header, inputColors, Spacer } from '../Style/style';
+import { borderRadius, colors, Header, inputColors, Spacer } from '../Style/style';
 import { InputType } from '../types';
 import { AddDieSelector } from './AddDieSelector';
+import { DieCustomizationMenu } from './DieCustomizationMenu';
+import { SettingsMenu } from './SettingsMenu';
 
 const MenuBackground = styled.div`
     position: fixed;
@@ -19,15 +21,30 @@ const MenuBackground = styled.div`
 
 const MenuWrapper = styled.div`
     background-color: ${inputColors.menu.background};
-    margin: 15% auto; /* 15% from the top and centered */
+    margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    border: 2px solid ${inputColors.button.border};
+    border-radius: ${borderRadius};
+    width: 80%;
 `;
 
 const CloseButton = styled(Button)`
         float: right;
 `;
+
+export const MenuSelector = () => {
+    const {state, dispatch} = useApp();
+    
+    console.log({menuType: state.menuType});
+
+    switch (state.menuType) {
+        case MenuTypes.DieCustomization:
+            return <DieCustomizationMenu />
+        case MenuTypes.Settings: 
+        default:
+            return <SettingsMenu />
+    }
+}
 
 export const Menu = () => {
     const {state, dispatch} = useApp();
@@ -44,10 +61,7 @@ export const Menu = () => {
         <MenuBackground>
             <MenuWrapper>
                 <CloseButton inputType={InputType.danger} onClick={handleCloseMenu}>X</CloseButton>
-                <Header>Settings</Header>
-                <div>
-                    <AddDieSelector />
-                </div>
+                <MenuSelector />
             </MenuWrapper>
         </MenuBackground>
     );

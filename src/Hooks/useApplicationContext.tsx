@@ -1,16 +1,25 @@
 import React, { createContext, useReducer } from "react";
 
+export enum MenuTypes {
+  DieCustomization = 'DieCustomization',
+  Settings = 'Settings'
+}
+
 interface IAppState {
-    isMenuOpen: boolean;
+  isMenuOpen: boolean;
+  menuType?: MenuTypes;
+  dieID?: string;
 }
 
 export enum IAppActions {
-    OpenMenu = 'OpenMenu',
+    OpenSettingsMenu = 'OpenSettingsMenu',
+    OpenDiceCustomizationMenu = 'OpenDiceCustomizationMenu',
     CloseMenu = 'CloseMenu',
 }
 
 type IAppActionPackages = 
-    {type: IAppActions.OpenMenu} | 
+    {type: IAppActions.OpenSettingsMenu } | 
+    {type: IAppActions.OpenDiceCustomizationMenu, dieID: string } | 
     {type: IAppActions.CloseMenu}
 
 export interface IUseAppPackage {
@@ -20,20 +29,32 @@ export interface IUseAppPackage {
 
 const initialState: IAppState = {    
     isMenuOpen: false,
+    menuType: undefined,
 }
 
 function appHandlerReducer(state: IAppState, action: IAppActionPackages): IAppState {
     switch (action.type) {
-      case IAppActions.OpenMenu: {
+      case IAppActions.OpenSettingsMenu: {
         return {
             ...state,
             isMenuOpen: true,
+            menuType: MenuTypes.Settings,
+         }
+      }
+      case IAppActions.OpenDiceCustomizationMenu: {
+        return {
+            ...state,
+            isMenuOpen: true,
+            menuType: MenuTypes.DieCustomization,
+            dieID: action.dieID,
          }
       }
       case IAppActions.CloseMenu: {
         return {
             ...state,
             isMenuOpen: false,
+            menuType: undefined,
+            dieID: undefined
          }
       }
       default: {
