@@ -12,7 +12,7 @@ export const D20Dice = ({die}: IPropOfDie) => {
 
     return (
         <D4Container>
-            <D20DieValue>{die.value}</D20DieValue>
+            <D20DieValue die={die}>{die.value}</D20DieValue>
             <D20Icon die={die} />
         </D4Container>
     )

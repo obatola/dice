@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useApp } from '../Hooks/useApplicationContext';
 import { IDiceActions, useDice } from '../Hooks/useDiceContext';
 import { Button, ColorOption } from '../Style/inputStyle';
-import { arrayOfBackgroundColors, colors, Header, Label } from '../Style/style';
+import { arrayOfBackgroundColors, arrayOfValueColors, colors, Header, Label } from '../Style/style';
 import { DieType, IDie, InputSize } from '../types';
 import { createNewDie, createNewDieWithType } from '../utils';
 import { DieTypeSelector } from './AddDieSelector';
@@ -50,7 +50,18 @@ export const DieCustomizationMenu = () => {
         return <></>
     }
 
-    const handleColorSelection = (event: any) => {
+    const handleValueColorSelection = (event: any) => {
+        dieDispatch({
+            type: IDiceActions.EditDie, 
+            dieID,
+            die: createNewDie({
+                ...die,
+                valueColor: event.target.name,
+            }),
+        })
+    }
+
+    const handleBackgroundColorSelection = (event: any) => {
         dieDispatch({
             type: IDiceActions.EditDie, 
             dieID,
@@ -87,7 +98,15 @@ export const DieCustomizationMenu = () => {
                     <Label htmlFor="dieType">Die Color</Label>
                     <ColorPanelTray>    
                         {arrayOfBackgroundColors.map((color) => (
-                            <ColorOption name={color} size={InputSize.small} color={color} isSelected={color === die.color} onClick={handleColorSelection} />
+                            <ColorOption name={color} size={InputSize.small} color={color} isSelected={color === die.color} onClick={handleBackgroundColorSelection} />
+                        ))}
+                    </ColorPanelTray>
+                </div>
+                <div>
+                    <Label htmlFor="dieType">Die Value Color</Label>
+                    <ColorPanelTray>    
+                        {arrayOfValueColors.map((color) => (
+                            <ColorOption name={color} size={InputSize.small} color={color} isSelected={color === die.valueColor} onClick={handleValueColorSelection} />
                         ))}
                     </ColorPanelTray>
                 </div>

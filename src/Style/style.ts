@@ -46,18 +46,26 @@ export const dieColor = {
 }
 
 export const arrayOfBackgroundColors = [
-    colors.red,
-    colors.blue,
-    colors.purple,
-    colors.orange,
-    '#ffdc5e', // mustard
-    '#9c7178', // copperRose
-    '#e9734d', // burntSienna
+    colors.green,
     '#8e936d', // artichoke
     // colors.pink,
+    colors.blue,
+    colors.purple,
+    '#9c7178', // copperRose
+    '#ffdc5e', // mustard
+    colors.orange,
+    colors.red,
+    '#e9734d', // burntSienna
     colors.dangerRed,
-    colors.green
 ];
+
+export const arrayOfValueColors = [
+    ...arrayOfBackgroundColors,
+    colors.white,
+    colors.background,
+    colors.darkerBackground,
+    colors.stroke
+]
 
 export const DieOptionPanel = styled.span`
     position: absolute;

@@ -71,13 +71,17 @@ const widthHeight = (diceSize - 6) - (2 * padding);
 
 export const D6Style = styled.div<IDiceStyleProps>`
     padding: ${padding}px;  
-    background-color: ${({isFrozen, color}: IDiceStyleProps) => isFrozen ? colors.grey : color};  
+    background-color: ${({die}: IDiceStyleProps) => die.isFrozen ? colors.grey : die.color};  
     width: ${widthHeight}px;  
     height: ${widthHeight}px;  
     border-radius: 10%;
     display: flex;
     border: solid 3px ${colors.stroke};
 
+    ${D6Dot} {
+        background-color: ${({die}: IDiceStyleProps) => die.valueColor || colors.white} !important;
+    }
+
     ${/* @ts-ignore */ ''}
-    ${({side}: IDiceStyleProps) => d6Sides[side] || ''}
+    ${({die}: IDiceStyleProps) => d6Sides[die.value] || ''}
 `;

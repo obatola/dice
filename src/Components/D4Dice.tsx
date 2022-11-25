@@ -11,7 +11,7 @@ export const D4Dice = ({die}: IPropOfDie) => {
 
     return (
         <D4Container>
-            <D4DieValue>{die.value}</D4DieValue>
+            <D4DieValue die={die}>{die.value}</D4DieValue>
             <D4Icon color={die.isFrozen ? colors.grey : die.color}/>
         </D4Container>
     )

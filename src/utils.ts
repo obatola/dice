@@ -34,6 +34,7 @@ export const createNewDie  = (dieParams: IOptionalDieProperties): IDie => {
     return {
         isFrozen: false,
         color: getRandomBackgroundColor(),
+        valueColor: colors.white,
         ...dieParams,
         value,
     }

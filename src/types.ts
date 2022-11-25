@@ -11,6 +11,7 @@ export interface IDie {
     value?: number;
     type: DieType;
     color: string;
+    valueColor: string;
     isFrozen: boolean;
 }
 
@@ -21,9 +22,7 @@ export interface IPropOfDie {
 }
 
 export interface IDiceStyleProps {
-    side: number;
-    isFrozen: boolean;
-    color?: string;
+    die: IDie;
 }
 
 export enum InputSize {
