@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { InputSize, InputType } from '../types';
-import { borderRadius, colors, inputColors } from './style';
+import { borderRadius, inputColors } from './style';
 interface IInputProps {
   size?: InputSize;
   inputType?: InputType;

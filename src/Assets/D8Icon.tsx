@@ -1,5 +1,4 @@
-import styled from 'styled-components';
-import { BackgroundColorShapes, colors, diceSize, DieInnerPath, DieOuterPath, DieSVG } from '../Style/style';
+import { BackgroundColorShapes, DieInnerPath, DieOuterPath, DieSVG } from '../Style/style';
 import { IDieSVGProps } from '../types';
 
 export const D8Icon = ({die}: IDieSVGProps) => (

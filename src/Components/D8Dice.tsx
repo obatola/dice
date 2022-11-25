@@ -1,6 +1,5 @@
 import { D4Container, D8DieValue } from "../Style/d4Style"
 import { IPropOfDie } from "../types"
-import { colors } from "../Style/style";
 import { D8Icon } from "../Assets/D8Icon";
 
 

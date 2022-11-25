@@ -1,7 +1,5 @@
 import { D12DieValue, D4Container } from "../Style/d4Style"
 import { IPropOfDie } from "../types"
-import { colors } from "../Style/style";
-import { D8Icon } from "../Assets/D8Icon";
 import { D12Icon } from "../Assets/D12Icon";
 
 

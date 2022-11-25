@@ -1,4 +1,4 @@
-import { IDie, IPropOfDie } from "../types"
+import { IPropOfDie } from "../types"
 import { D6Dot, D6Style } from "../Style/d6Style"
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useApp } from '../Hooks/useApplicationContext';
 import { IDiceActions, useDice } from '../Hooks/useDiceContext';
-import { Button, ColorOption } from '../Style/inputStyle';
+import { ColorOption } from '../Style/inputStyle';
 import { arrayOfBackgroundColors, arrayOfValueColors, colors, Header, Label } from '../Style/style';
 import { DieType, IDie, InputSize } from '../types';
 import { createNewDie, createNewDieWithType } from '../Utils/utils';

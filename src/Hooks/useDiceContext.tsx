@@ -1,5 +1,4 @@
 import React, { createContext, useReducer } from "react";
-import { Map } from 'immutable';
 import { DieType, IDiceCollection, IDie } from "../types";
 import { createNewDieWithType, generateId, generateRolledValue } from "../Utils/utils";
 import { getDieFromLocalStorage, saveDieSetToLocalStorage } from "../Utils/localStorageUtils";

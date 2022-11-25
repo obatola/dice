@@ -1,18 +1,11 @@
 import styled from 'styled-components';
-import { BackgroundColorShapes, colors, diceSize, DieSVG } from '../Style/style';
-import { IDie, IDieSVGProps } from '../types';
-import { lightenDarkenColor } from '../Utils/utils';
+import { BackgroundColorShapes, colors, DieSVG } from '../Style/style';
+import { IDieSVGProps } from '../types';
 
 const DieOuterPath = styled.path<IDieSVGProps>`
     fill: none;
     stroke: ${colors.stroke};
     stroke-width: 20.83px;
-`;
-
-const DieInnerPath = styled.path<IDieSVGProps>`
-    fill:none;
-    stroke: ${colors.stroke};
-    stroke-width:2px;
 `;
 
 const DieEdges = styled.path`

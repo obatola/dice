@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, diceSize, DieSVG } from '../Style/style';
+import { colors DieSVG } from '../Style/style';
 
 const DieSVGPath = styled.path<IDieSVGProps>`
     fill: ${({color = colors.red}: IDieSVGProps) => color};

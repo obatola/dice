@@ -1,10 +1,8 @@
 import React from "react";
 import styled from 'styled-components';
-import { IDiceActions, useDice } from "../Hooks/useDiceContext";
-import { RollButton } from "../Style/inputStyle";
+import { useDice } from "../Hooks/useDiceContext";
 import { DiceTrayStyle, Spacer } from "../Style/style";
 import { IDiceCollection } from "../types";
-import { AddDieSelector } from "./AddDieSelector";
 import { DieViewer } from "./DieViewer";
 import { RollButtonTray } from "./RollButtonTray";
 

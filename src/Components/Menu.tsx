@@ -4,7 +4,6 @@ import { IAppActions, MenuTypes, useApp } from '../Hooks/useApplicationContext';
 import { Button } from '../Style/inputStyle';
 import { borderRadius, colors, Header, inputColors, Spacer } from '../Style/style';
 import { InputType } from '../types';
-import { AddDieSelector } from './AddDieSelector';
 import { DieCustomizationMenu } from './DieCustomizationMenu';
 import { SettingsMenu } from './SettingsMenu';
 

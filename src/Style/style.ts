@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IDie, InputType } from '../types';
 import { getDieColor, lightenDarkenColor } from '../Utils/utils';
+
 export const dotSize = '24px';
 export const diceSize = 116;
 export const appPadding = 20;

@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { IAppActions, useApp } from '../Hooks/useApplicationContext';
+import { useApp } from '../Hooks/useApplicationContext';
 import { IDiceActions, useDice } from '../Hooks/useDiceContext';
 import { Button } from '../Style/inputStyle';
-import { Header, Spacer } from '../Style/style';
+import { Header } from '../Style/style';
 import { AddDieSelector } from './AddDieSelector';
-import { DieSetHandler } from './DieSetHandler';
 
 const Content = styled.div`
     div {
@@ -14,12 +13,8 @@ const Content = styled.div`
 `;
 
 export const SettingsMenu = () => {
-    const {state: appState, dispatch: appDispatch} = useApp();
+    const {state: appState} = useApp();
     const {dispatch: diceDispatch} = useDice();
-
-    const handleCloseMenu = () => {
-        appDispatch({type: IAppActions.CloseMenu});
-    }
 
     const handleResetBoard = () => {
         diceDispatch({type: IDiceActions.ResetBoard})
@@ -38,9 +33,6 @@ export const SettingsMenu = () => {
                 </div>
                 <div>
                     <Button fluid onClick={handleResetBoard}>Reset Board</Button>
-                </div>
-                <div>
-                    {/* <DieSetHandler /> */}
                 </div>
             </Content>
         </div>

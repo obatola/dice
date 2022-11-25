@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BackgroundColorShapes, colors, diceSize, DieInnerPath, DieOuterPath, DieSVG } from '../Style/style';
+import { BackgroundColorShapes, colors, DieInnerPath, DieOuterPath, DieSVG } from '../Style/style';
 import { IDieSVGProps } from '../types';
 
 const DieInnerRounding = styled.path`

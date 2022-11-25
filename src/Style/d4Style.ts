@@ -1,5 +1,5 @@
 import styled, {css} from 'styled-components';
-import { IDiceStyleProps, IDie } from "../types";
+import { IDie } from "../types";
 import { colors, diceSize } from './style';
 
 export const D4SVGContainer = styled.img`
