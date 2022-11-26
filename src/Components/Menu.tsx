@@ -25,6 +25,7 @@ const MenuWrapper = styled.div`
     border: 3px solid ${inputColors.button.border};
     border-radius: ${borderRadius};
     width: 75%;
+    max-width: 400px;
     box-shadow: 15px 15px 0px 0px;
 `;
 
