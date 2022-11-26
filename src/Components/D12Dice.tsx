@@ -1,7 +1,5 @@
 import { D12DieValue, D4Container } from "../Style/d4Style"
 import { IPropOfDie } from "../types"
-import { colors } from "../Style/style";
-import { D8Icon } from "../Assets/D8Icon";
 import { D12Icon } from "../Assets/D12Icon";
 
 
@@ -12,8 +10,8 @@ export const D12Dice = ({die}: IPropOfDie) => {
 
     return (
         <D4Container>
-            <D12DieValue>{die.value}</D12DieValue>
-            <D12Icon color={die.isFrozen ? colors.grey : die.color}/>
+            <D12DieValue die={die}>{die.value}</D12DieValue>
+            <D12Icon die={die} />
         </D4Container>
     )
 }

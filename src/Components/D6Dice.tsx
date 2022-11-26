@@ -1,4 +1,4 @@
-import { IDie, IPropOfDie } from "../types"
+import { IPropOfDie } from "../types"
 import { D6Dot, D6Style } from "../Style/d6Style"
 
 
@@ -61,7 +61,7 @@ export const D6Dice = ({die}: IPropOfDie) => {
     }
 
     return (
-        <D6Style side={die.value as number} isFrozen={die.isFrozen} color={die.color}>
+        <D6Style die={die}>
             {getD6Dots(die.value)}
         </D6Style>
     )

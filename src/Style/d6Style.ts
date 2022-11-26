@@ -7,6 +7,8 @@ const dotSize = '20px';
 export const DieWrapper = styled.div`
     padding: 25px;
     position: relative;
+    width: fit-content;
+    margin: auto;
     margin-bottom: 40px;
 
     @media (max-width: 800px) {
@@ -65,17 +67,21 @@ const d6Sides = {
 
 
 const padding = 18;
-const widthHeight = (diceSize - 12) - (2 * padding);
+const widthHeight = (diceSize - 6) - (2 * padding);
 
 export const D6Style = styled.div<IDiceStyleProps>`
     padding: ${padding}px;  
-    background-color: ${({isFrozen, color}: IDiceStyleProps) => isFrozen ? colors.grey : color};  
+    background-color: ${({die}: IDiceStyleProps) => die.isFrozen ? colors.grey : die.color};  
     width: ${widthHeight}px;  
     height: ${widthHeight}px;  
     border-radius: 10%;
     display: flex;
     border: solid 3px ${colors.stroke};
 
+    ${D6Dot} {
+        background-color: ${({die}: IDiceStyleProps) => die.isFrozen ? colors.lightGrey : die.valueColor || colors.white} !important;
+    }
+
     ${/* @ts-ignore */ ''}
-    ${({side}: IDiceStyleProps) => d6Sides[side] || ''}
+    ${({die}: IDiceStyleProps) => d6Sides[die.value] || ''}
 `;

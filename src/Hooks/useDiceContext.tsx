@@ -1,7 +1,7 @@
 import React, { createContext, useReducer } from "react";
-import { Map } from 'immutable';
 import { DieType, IDiceCollection, IDie } from "../types";
-import { createNewDie, generateId, generateRolledValue } from "../utils";
+import { createNewDieWithType, generateId, generateRolledValue } from "../Utils/utils";
+import { getDieFromLocalStorage, saveDieSetToLocalStorage } from "../Utils/localStorageUtils";
 
 interface IDiceState {
     dice: IDiceCollection;
@@ -10,15 +10,19 @@ interface IDiceState {
 
 export enum IDiceActions {
     AddDie = 'AddDie',
+    EditDie = 'EditDie',
     ToggleFreeze = 'ToggleFreeze',
     RemoveDie = 'RemoveDie',
+    ResetBoard = 'ResetBoard',
     RollAll = 'RollAll',
 }
 
 type IDiceActionPackages = 
     {type: IDiceActions.AddDie, dieType: DieType} | 
+    {type: IDiceActions.EditDie, dieID: string, die: IDie} | 
     {type: IDiceActions.ToggleFreeze, id: string} | 
     {type: IDiceActions.RemoveDie, id: string} |
+    {type: IDiceActions.ResetBoard} |
     {type: IDiceActions.RollAll}
 
 export interface IUseDicePackage {
@@ -27,27 +31,32 @@ export interface IUseDicePackage {
 }
 
 const initialState: IDiceState = {    
-    dice: Map({
-            [generateId()]: createNewDie(DieType.D4),
-            [generateId()]: createNewDie(DieType.D6),
-            [generateId()]: createNewDie(DieType.D8),
-            [generateId()]: createNewDie(DieType.D10),
-            [generateId()]: createNewDie(DieType.D12),
-            [generateId()]: createNewDie(DieType.D20)
-        }),
+    dice: getDieFromLocalStorage(),
     isRolling: false,
 }
 
-function diceHandlerReducer(state: IDiceState, action: IDiceActionPackages) {
-  console.log({action})
+const actionsToOmitFromLocalStorageSaving = [
+  IDiceActions.RollAll,
+]
+
+function diceHandlerReducerLocalStorageInterceptor(state: IDiceState, action: IDiceActionPackages): IDiceState {
+  const newState = diceHandlerReducer(state, action);
+  
+  if (!actionsToOmitFromLocalStorageSaving.includes(action.type)) {
+    saveDieSetToLocalStorage(newState.dice);
+  }
+
+  return newState;
+}
+
+function diceHandlerReducer(state: IDiceState, action: IDiceActionPackages): IDiceState {
     switch (action.type) {
       case IDiceActions.AddDie: {
         const id = generateId();
-        const newDie = createNewDie(action.dieType);
-        console.log('nd', newDie)
-        const newDice = state.dice.set(id, newDie);
-        console.log('ndc', newDice.toJSON())
-        return { ...state, dice: state.dice.set(id, createNewDie(action.dieType))}
+        return { ...state, dice: state.dice.set(id, createNewDieWithType(action.dieType))}
+      }
+      case IDiceActions.EditDie: {
+        return { ...state, dice: state.dice.set(action.dieID, action.die)}
       }
       case IDiceActions.ToggleFreeze: {
         return { ...state, dice: state.dice.update(action.id, (die) => {
@@ -59,6 +68,9 @@ function diceHandlerReducer(state: IDiceState, action: IDiceActionPackages) {
       }
       case IDiceActions.RemoveDie: {
         return { ...state, dice: state.dice.remove(action.id)}
+      }
+      case IDiceActions.ResetBoard: {
+        return { ...state, dice: state.dice.clear()}
       }
       case IDiceActions.RollAll: {
         return { 
@@ -86,7 +98,7 @@ const DiceContext = createContext<IUseDicePackage | null>(null);
 DiceContext.displayName = 'DiceContext'
 
 export const DiceContextProvider = ({children}: {children: React.ReactNode}) => {
-    const [state, dispatch] = useReducer(diceHandlerReducer, initialState)
+    const [state, dispatch] = useReducer(diceHandlerReducerLocalStorageInterceptor, initialState)
 
     return (<DiceContext.Provider value={{state, dispatch}}>
         {children}

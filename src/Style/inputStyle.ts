@@ -1,9 +1,11 @@
 import styled, { css } from 'styled-components';
 import { InputSize, InputType } from '../types';
-import { colors, inputColors } from './style';
+import { borderRadius, inputColors } from './style';
 interface IInputProps {
   size?: InputSize;
   inputType?: InputType;
+  fluid?: boolean;
+  color?: string;
 }
 
 const inputParams = {
@@ -45,6 +47,7 @@ const inputParams = {
 
 const inputStyling = css<IInputProps>`
   z-index: 1;
+  ${({fluid}: IInputProps) => fluid && `width: 100%;`}
   -webkit-appearance: none;
   ${({size = InputSize.normal}: IInputProps) => inputParams.base[size]};
   font-family: "Open Sans", sans-serif;
@@ -52,9 +55,9 @@ const inputStyling = css<IInputProps>`
   text-decoration: none;
   text-transform: uppercase;
   color: ${inputColors.button.border};
-  background-color: ${({inputType = InputType.normal}: IInputProps) => inputColors.button.background[inputType]};
+  background-color: ${({inputType = InputType.normal, color}: IInputProps) => color || inputColors.button.background[inputType]};
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: ${borderRadius};
   padding: 0.25em 0.5em;
   position: relative;
   user-select: none;
@@ -74,7 +77,7 @@ const inputStyling = css<IInputProps>`
   @media (min-width: 768px) {
     padding: 0.25em 0.75em;
   }
-`
+`;
 
 export const Select = styled.select`
   ${inputStyling}
@@ -138,6 +141,21 @@ export const ButtonSimple = styled.button`
       top: 0px;
       left: 0px;
     }
+`;
+
+interface IColorOptionsProps extends IInputProps {
+  isSelected?: boolean;
+}
+
+export const ColorOption = styled(Button)<IColorOptionsProps>`
+    width: 30px;
+    height: 30px;
+
+    ${({isSelected, size}: IColorOptionsProps) => isSelected && `
+        box-shadow: 0px 0px 0px 0px !important;
+        top: 2px !important;
+        left: 2px !important;
+    `}
 `;
 
 export const DieSelectorTray = styled.div`
