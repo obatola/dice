@@ -58,12 +58,16 @@ export const DieViewer = ({dieID, hideOptions} : IDieViewer) => {
                     <Button type="button" onClick={handleOpenCustomizationPage} size={InputSize.small}>c</Button>
                 </DieOptionPanel>
             )}
-            {getCorrectDieImage(die)}
+            <BasicDieViewer die={die} />
         </DieWrapper>
     )
 }
 
-const getCorrectDieImage = (die: IDie): React.ReactNode => {
+interface IProps {
+    die: IDie;
+}
+
+export const BasicDieViewer = ({die}: IProps) => {
     switch (die.type) {
         case DieType.D4:
             return (<D4Dice die={die}/>)
@@ -80,5 +84,4 @@ const getCorrectDieImage = (die: IDie): React.ReactNode => {
         default:
             return (<D6Dice die={die}/>)
     }
-    
 }

@@ -2,18 +2,25 @@ import React from 'react';
 import styled from 'styled-components';
 import { useApp } from '../Hooks/useApplicationContext';
 import { IDiceActions, useDice } from '../Hooks/useDiceContext';
+import { DieWrapper } from '../Style/d6Style';
 import { ColorOption } from '../Style/inputStyle';
-import { arrayOfBackgroundColors, arrayOfValueColors, colors, Header, Label } from '../Style/style';
+import { arrayOfBackgroundColors, arrayOfValueColors, colors, diceSize, Header, Label } from '../Style/style';
 import { DieType, IDie, InputSize } from '../types';
 import { createNewDie, createNewDieWithType } from '../Utils/utils';
 import { DieTypeSelector } from './AddDieSelector';
-import { DieViewer } from './DieViewer';
+import { BasicDieViewer, DieViewer } from './DieViewer';
 
 const DieViewerWrapper = styled.div`
     background-color: ${colors.background};
     border-radius: 100%;
-    width: 166px;
+    width: ${diceSize + 80}px;
+    height: ${diceSize + 80}px;
     margin: auto;
+    display: flex;
+
+    ${DieWrapper} {
+        margin: auto !important;
+    }
 `;
 
 const ColorPanelTray = styled.div`
@@ -87,7 +94,9 @@ export const DieCustomizationMenu = () => {
         <div>
             <Header>Customize Die</Header>
             <DieViewerWrapper>
-                <DieViewer dieID={dieID} hideOptions />
+                <DieWrapper>
+                    <BasicDieViewer die={{...die, isFrozen: false}} />
+                </DieWrapper>
             </DieViewerWrapper>
             <DieCustomizationPannelWrapper>
                 <div>

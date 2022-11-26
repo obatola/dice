@@ -12,7 +12,7 @@ const diceValueStyle = css<IDieValueProps>`
     font-size: 30px;
     font-weight: bold;
     width: 60px;
-    color: ${({die}: IDieValueProps) => die.valueColor || colors.white};
+    color: ${({die}: IDieValueProps) => die.isFrozen ? colors.lightGrey : die.valueColor || colors.white};
 `
 
 interface IDieValueProps {

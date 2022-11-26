@@ -79,7 +79,7 @@ export const D6Style = styled.div<IDiceStyleProps>`
     border: solid 3px ${colors.stroke};
 
     ${D6Dot} {
-        background-color: ${({die}: IDiceStyleProps) => die.valueColor || colors.white} !important;
+        background-color: ${({die}: IDiceStyleProps) => die.isFrozen ? colors.lightGrey : die.valueColor || colors.white} !important;
     }
 
     ${/* @ts-ignore */ ''}

@@ -16,7 +16,8 @@ export const colors = {
     dangerRed: '#ffa9a9',
     freezeBlue: '#d4eaed',
     white: '#FEFFF8',
-    grey: '#93989B',
+    lightGrey: '#E4E5DF',
+    grey: '#7C8083',
     stroke: '#4B382C', // #594639 #3d3d3d
     interiorRoundingFill: '#4b4b4b',
     background: '#f5f7e3', // #f7f1e3 #ECE2D1

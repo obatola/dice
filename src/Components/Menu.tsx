@@ -20,12 +20,12 @@ const MenuBackground = styled.div`
 
 const MenuWrapper = styled.div`
     background-color: ${inputColors.menu.background};
-    margin: 15% auto;
+    margin: 50px auto 40px auto;
     padding: 20px;
     border: 3px solid ${inputColors.button.border};
     border-radius: ${borderRadius};
     width: 75%;
-    box-shadow: 10px 10px 0px 0px;
+    box-shadow: 15px 15px 0px 0px;
 `;
 
 const CloseButton = styled(Button)`
