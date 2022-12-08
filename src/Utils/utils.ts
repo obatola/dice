@@ -1,4 +1,4 @@
-import { arrayOfBackgroundColors, colors } from "../Style/style";
+import { arrayOfBackgroundColors, colors, dieColor } from "../Style/style";
 import { DieType, IDie } from "../types";
 
  // min and max included 
@@ -45,6 +45,7 @@ export const getRandomBackgroundColor = () => {
     return arrayOfBackgroundColors[index];
 }
 
+// taken from the internet
 export const lightenDarkenColor = (col: string, amt: number) => {
   
     var usePound = false;
@@ -76,7 +77,7 @@ export const lightenDarkenColor = (col: string, amt: number) => {
 
 export const getDieColor = (die: IDie) => {
     if (die.isFrozen) {
-        return colors.grey;
+        return dieColor.frozenBackground;
     } else {
         return die.color;
     }
